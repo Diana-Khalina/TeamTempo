@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Login from './pages/Login';
 
 function App() {
   useEffect(() => {
@@ -10,7 +11,10 @@ function App() {
 
   return (
     <div className="App">
+      <div className="container">
       <h1>Team Tempo</h1>
+      <Login />
+      </div>
     </div>
   );
 }
