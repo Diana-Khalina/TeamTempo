@@ -1,0 +1,27 @@
+.dashboard-container {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .navbar-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .navbar-link {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border-radius: 6px;
+  }
+  
+  .navbar-link.main {
+    background-color: #007bff;
+  }
+  
+  .navbar-link.tracker {
+    background-color: #28a745;
+  }
+  
