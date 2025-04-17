@@ -26,7 +26,7 @@ app.use(
   cors({
     origin: process.env.NODE_ENV === 'production'
       ? 'https://your-production-domain.com' // Дозволяємо лише продакшн-домен
-      : 'http://localhost:3002', // Локальний фронтенд у режимі розробки
+      : 'http://localhost:3000', // Локальний фронтенд у режимі розробки
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true, 
   })
