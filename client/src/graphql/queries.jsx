@@ -10,3 +10,21 @@ export const GET_USERS = gql`
     }
   }
 `;
+export const GET_USER_MOOD_ENTRIES = gql`
+  query GetUserMoodEntries($id: ID!) {
+    getUserMoodEntries(id: $id) {
+      _id
+      date
+      answers {
+        question
+        answer
+      }
+    }
+  }
+`;
+
+
+
+
+
+

@@ -20,8 +20,8 @@ function LoginPage() {
 
       localStorage.setItem('token', token);
       localStorage.setItem('role', user.role);
-
-      // Перенаправлення залежно від ролі
+      localStorage.setItem('userId', user._id);
+      
       if (user.role === 'EMPLOYEE') {
         navigate('/worker-dashboard');
       } else if (user.role === 'MANAGER') {
