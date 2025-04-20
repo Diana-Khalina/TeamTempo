@@ -67,9 +67,9 @@ export const login = async (req, res) => {
   
       // Test logic for token validation
       try {
-        console.log('Generated token:', token);
+        
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log('Decoded token:', decoded);
+        
       } catch (error) {
         console.error('Token verification error:', error.message);
       }

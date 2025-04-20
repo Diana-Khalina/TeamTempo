@@ -23,7 +23,7 @@ const UserSchema = new Schema({
   },
   moodEntries: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'MoodEntry', 
     },
   ],
@@ -32,3 +32,12 @@ const UserSchema = new Schema({
 const User = mongoose.model('User', UserSchema);
 
 export default User;
+
+
+
+
+
+
+
+
+

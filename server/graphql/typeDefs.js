@@ -6,6 +6,18 @@ const typeDefs = gql`
     username: String!
     email: String!
     role: Role!
+    moodEntries: [MoodEntry!]! # Зв'язок з настроями
+  }
+
+  type MoodEntry {
+    _id: ID!
+    date: String!
+    answers: [Answer!]!
+  }
+
+  type Answer {
+    question: String!
+    answer: String!
   }
 
   enum Role {
@@ -20,8 +32,7 @@ const typeDefs = gql`
 
   type Query {
     getUsers: [User!]!
-    
-    
+    getUserMoodEntries(id: ID!): [MoodEntry!]! # Новий запит для отримання настроїв конкретного користувача
     me: User
   }
 
@@ -34,7 +45,6 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    
     addUser(
       username: String!
       email: String!
@@ -42,11 +52,9 @@ const typeDefs = gql`
       role: Role!
       inviteCode: String
     ): AuthPayload!
-    
-    
+
     signup(input: SignupInput!): AuthPayload!
 
-    
     login(
       email: String!
       password: String!
@@ -55,3 +63,12 @@ const typeDefs = gql`
 `;
 
 export default typeDefs;
+
+
+
+
+
+
+
+
+

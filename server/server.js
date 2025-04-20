@@ -5,6 +5,8 @@ import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js'; 
+import moodRoutes from './routes/moodRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import typeDefs from './graphql/typeDefs.js';
 import resolvers from './graphql/Resolvers.js';
 
@@ -22,17 +24,13 @@ mongoose
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
-app.use(
-  cors({
-    origin: process.env.NODE_ENV === 'production'
-      ? 'https://your-production-domain.com' // Дозволяємо лише продакшн-домен
-      : 'http://localhost:3000', // Локальний фронтенд у режимі розробки
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true, 
-  })
-);
+  app.use(cors({
+    origin: 'http://localhost:3000',
+  }));
 
 app.use('/auth', authRoutes); 
+app.use('/users', userRoutes);
+app.use('/mood', moodRoutes);
 
 // ApolloServer
 async function startApolloServer() {
@@ -65,3 +63,23 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
