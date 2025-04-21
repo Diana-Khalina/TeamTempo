@@ -1,18 +1,16 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-dotenv.config();
+
+dotenv.config(); // Завантаження змінних середовища
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.DB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.DB_URI); // Підключення до MongoDB без старих параметрів
     console.log('✅ MongoDB connected');
   } catch (error) {
     console.error('❌ MongoDB connection error:', error.message);
-    process.exit(1); 
+    process.exit(1); // Завершити процес у разі невдачі
   }
 };
 
-module.exports = connectDB;
+export default connectDB; // Використовуємо ES-модульний синтаксис

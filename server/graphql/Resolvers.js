@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js'; 
+import User from '../models/User.js';
+import MoodEntry from '../models/MoodEntry.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -8,53 +9,42 @@ dotenv.config();
 const resolvers = {
   Query: {
     getUsers: async (_, __, { token }) => {
-  try {
+      try {
+        console.log('Received token:', token);
 
-    if (!token) {
-      throw new Error('No token provided');
-    }
+        if (!token) {
+          throw new Error('No token provided');
+        }
 
-    const strippedToken = token.replace('Bearer ', '');
+        const strippedToken = token.replace('Bearer ', '');
+        const decoded = jwt.verify(strippedToken, process.env.JWT_SECRET);
 
-    const decoded = jwt.verify(strippedToken, process.env.JWT_SECRET);
+        const user = await User.findById(decoded.id);
 
-    const user = await User.findById(decoded.id);
+        if (!user || user.role !== 'MANAGER') {
+          throw new Error('Access denied. Only managers can view user list.');
+        }
 
-    if (!user || user.role !== 'MANAGER') {
-      throw new Error('Access denied. Only managers can view user list.');
-    }
+        const employees = await User.find({ role: 'EMPLOYEE' });
+        return employees;
+      } catch (error) {
+        console.error('Error in getUsers:', error.message);
+        throw new Error('Failed to fetch users. Please try again.');
+      }
+    },
 
-    const employees = await User.find({ role: 'EMPLOYEE' });
-    return employees;
-  } catch (error) {
-    throw new Error('Failed to fetch users. Please try again.');
-  }
-},
-getUsers: async (_, __, { token }) => {
-  try {
-    console.log('Received token:', token); 
-
-    if (!token) {
-      console.error('No token provided');
-      throw new Error('No token provided');
-    }
-
-    const strippedToken = token.replace('Bearer ', '');
-
-    const decoded = jwt.verify(strippedToken, process.env.JWT_SECRET);
-
-    const user = await User.findById(decoded.id);
-
-    if (!user || user.role !== 'MANAGER') {
-      throw new Error('Access denied. Only managers can view user list.');
-    }
-
-    const employees = await User.find({ role: 'EMPLOYEE' });
-    return employees;
-  } catch (error) {
-    throw new Error('Failed to fetch users. Please try again.');
-  }
-},
+    getUserMoodEntries: async (_, { id }) => {
+      try {
+        const user = await User.findById(id).populate('moodEntries'); 
+        if (!user) {
+          throw new Error('User not found.');
+        }
+        return user.moodEntries; 
+      } catch (error) {
+        console.error('Error in getUserMoodEntries:', error.message);
+        throw new Error('Failed to fetch mood entries.');
+      }
+    },
 
     me: async (_, __, { token }) => {
       try {

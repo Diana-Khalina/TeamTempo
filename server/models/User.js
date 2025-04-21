@@ -23,7 +23,7 @@ const UserSchema = new Schema({
   },
   moodEntries: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'MoodEntry', 
     },
   ],

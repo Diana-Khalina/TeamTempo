@@ -55,3 +55,35 @@ footer {
   padding: 10px 0;
   text-align: center;
 }
+
+
+.icon-option {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  background: #f0f0f0;
+  cursor: pointer;
+  size: 100%;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.icon-option:hover {
+  background: #d4edda;
+  transform: scale(1.1);
+}
+
+.icon-option.selected {
+  background: #28a745;
+  color: white;
+  transform: scale(1.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.daily-mood-form {
+  margin-top: 20px;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+

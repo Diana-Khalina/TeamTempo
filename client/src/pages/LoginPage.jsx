@@ -14,14 +14,14 @@ function LoginPage() {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:4000/auth/login', { email, password }); // Змінено URL на правильний endpoint
+      const response = await axios.post('http://localhost:4000/auth/login', { email, password });
 
       const { token, user } = response.data; 
+      localStorage.setItem('userId', user._id); // Save userId to localStorage
 
       localStorage.setItem('token', token);
       localStorage.setItem('role', user.role);
 
-      // Перенаправлення залежно від ролі
       if (user.role === 'EMPLOYEE') {
         navigate('/worker-dashboard');
       } else if (user.role === 'MANAGER') {

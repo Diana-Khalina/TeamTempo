@@ -3,21 +3,21 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const MoodEntrySchema = new Schema({
-  userId: {
-    type: Schema.Types.ObjectId,
+    employeeId: {
+        type: mongoose.Schema.Types.ObjectId,
     ref: 'User', 
     required: true,
   },
-  mood: {
-    type: String,
-    enum: ['HAPPY', 'SAD', 'NEUTRAL'], 
-    required: true,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
+  date: { type: Date, default: new Date().setHours(0, 0, 0, 0), required: true },
+  answers: [
+    {
+      question: { type: String, required: true },
+      answer: { type: String, required: true },
+    },
+  ],
 });
+
+MoodEntrySchema.index({ employeeId: 1, date: 1 }, { unique: true });
 
 const MoodEntry = mongoose.model('MoodEntry', MoodEntrySchema);
 
