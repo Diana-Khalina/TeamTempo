@@ -2,20 +2,18 @@ import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import { useQuery } from '@apollo/client';
 import { GET_USERS } from '../graphql/queries';
-import useMoodEntries from '../hooks/useMoodEntries'; // Import custom hook
+import useMoodEntries from '../hooks/useMoodEntries';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-
 
 const ManagerDashboard = () => {
   const { loading, error, data } = useQuery(GET_USERS);
   const [selectedUser, setSelectedUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  const { loading: loadingMoodEntries, error: errorMoodEntries, moodEntries } = useMoodEntries(selectedUser);
+  const { loading: loadingMoodEntries, error: errorMoodEntries, moodEntries } = useMoodEntries(selectedUser?._id);
 
-  const handleViewMoodEntries = (userId) => {
-    setSelectedUser(userId);
+  const handleViewMoodEntries = (user) => {
+    setSelectedUser(user);
     setShowModal(true);
   };
 
@@ -30,30 +28,51 @@ const ManagerDashboard = () => {
   return (
     <div className="container">
       <Navigation />
-
       <h1>Welcome to Manager Dashboard</h1>
       <div className="container mt-4">
         <h2>Employee List</h2>
-        <ul className="list-group">
+        <div className="row">
           {data.getUsers.map((user) => (
-            <li key={user._id} className="list-group-item">
-              <strong>{user.username}</strong> - {user.email} ({user.role})
-              <Button
-                variant="secondary"
-                className="ms-3"
-                onClick={() => handleViewMoodEntries(user._id)}
+            <div
+              key={user._id}
+              className="col-md-4 mb-4"
+              onClick={() => handleViewMoodEntries(user)}
+              style={{ cursor: 'pointer' }}
+            >
+              <div
+                className="card shadow-lg rounded-lg border-0 h-100 d-flex justify-content-center align-items-center"
+                style={{
+                  backgroundColor: '#FAF3C0', 
+                  transition: 'transform 0.3s ease-in-out, background-color 0.3s ease-in-out',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#28A745'; 
+                  e.currentTarget.style.color = '#FFFFFF'; 
+                  e.currentTarget.style.transform = 'scale(1.05)'; 
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FAF3C0'; 
+                  e.currentTarget.style.color = '#000000'; 
+                  e.currentTarget.style.transform = 'scale(1)'; 
+                }}
               >
-                View Mood Entries
-              </Button>
-            </li>
+                <div className="card-body text-center">
+                  <h5 className="card-title" style={{ fontWeight: 'bold' }}>{user.username}</h5>
+                  <p className="card-text">{user.email}</p>
+                </div>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
 
       {selectedUser && (
         <Modal show={showModal} onHide={closeModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Mood Entries for {selectedUser}</Modal.Title>
+            <Modal.Title>
+              Mood Entries for{' '}
+              <span style={{ color: '#28A745', fontWeight: 'bold' }}>{selectedUser.username}</span>
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {loadingMoodEntries ? (
@@ -65,7 +84,6 @@ const ManagerDashboard = () => {
                 {moodEntries.map((entry) => (
                   <li key={entry._id}>
                     <strong>Date:</strong> {new Date(entry.date).toLocaleDateString()}
-
                     <ul>
                       {entry.answers.map((answer, idx) => (
                         <li key={idx}>
@@ -81,9 +99,9 @@ const ManagerDashboard = () => {
             )}
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={closeModal}>
+            <button className="btn btn-secondary" onClick={closeModal}>
               Close
-            </Button>
+            </button>
           </Modal.Footer>
         </Modal>
       )}
@@ -92,12 +110,3 @@ const ManagerDashboard = () => {
 };
 
 export default ManagerDashboard;
-
-
-
-
-
-
-
-
-
