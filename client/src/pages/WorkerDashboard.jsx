@@ -20,7 +20,7 @@ const WorkerDashboard = () => {
                 setError('User ID is missing. Please log in again.');
                 return;
               }
-            const response = await axios.get(`http://localhost:4000/users/${userId}`); // Fetch user data
+            const response = await axios.get(`https://teamtempo.onrender.com/users/${userId}`); // changed to the correct endpoint
             setMoodEntries(response.data.moodEntries); // Set mood entries from the response
         } catch (err) {
             console.error('Error fetching mood entries:', err); 
