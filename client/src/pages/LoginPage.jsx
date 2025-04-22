@@ -14,7 +14,7 @@ function LoginPage() {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:4000/auth/login', { email, password }); // Змінено URL на правильний endpoint
+      const response = await axios.post('https://teamtempo.onrender.com/auth/login', { email, password }); // Змінено URL на правильний endpoint
 
       const { token, user } = response.data; 
 
