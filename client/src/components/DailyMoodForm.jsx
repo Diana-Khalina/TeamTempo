@@ -25,7 +25,7 @@ function DailyMoodForm({ onClose }) {
         return;
       }
 
-      const response = await axios.post("http://localhost:4000/mood/addMoodEntry", {
+      const response = await axios.post("https://teamtempo.onrender.com/mood/addMoodEntry", { //changed to the correct endpoint
         employeeId,
         answers: Object.keys(answers).map((key) => ({
           question: questions.find((q) => q.id === parseInt(key)).text,

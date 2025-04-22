@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import './App.css';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'https://teamtempo.onrender.com/graphql', //changed to the correct endpoint
 });
 
 const authLink = setContext((_, { headers }) => {
