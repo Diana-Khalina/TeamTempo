@@ -4,10 +4,14 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "dev": "nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "start": "node server/server.js",
+  "dev": "nodemon server/server.js",
+  "build": "cd client && npm install && npm run build",
+  "deploy": "npm run build && npm start",
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
+    
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Diana-Khalina/TeamTempo.git"
