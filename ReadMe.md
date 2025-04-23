@@ -34,8 +34,8 @@
 
 ## 📸 Screenshots
 
-![employee view] (./client/src/assets/teamtempoEmployee.jpg)
-![employee daily mood form] (./client/src/assets/teamtempoEntry.jpg)
+![employee view] (./client/src/assets/TeamTempoEmployee.JPG)
+![employee daily mood form] (./client/src/assets/TeamTempoEntry.JPG)
 ---
 
 ##  How to Run Locally

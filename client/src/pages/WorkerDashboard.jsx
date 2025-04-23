@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navigation from '../components/Navigation';
 import DailyMoodForm from '../components/DailyMoodForm';
-import logoOne from '../assets/Hero.jpg'; 
+import logoOne from '../assets/Hero.JPG';
 
 const WorkerDashboard = () => {
     const [showMoodForm, setShowMoodForm] = useState(false);
