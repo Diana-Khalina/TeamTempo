@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navigation from '../components/Navigation';
 import DailyMoodForm from '../components/DailyMoodForm';
+import logoOne from '../assets/Hero.jpg'; 
 
 const WorkerDashboard = () => {
     const [showMoodForm, setShowMoodForm] = useState(false);
@@ -41,7 +42,11 @@ const WorkerDashboard = () => {
         <div className="container">
             <Navigation />
 
-            <h1>Welcome to Worker Dashboard</h1>
+            <div className="d-flex flex-column align-items-center mt-5">
+
+                <h1 className="text-success">Welcome to Worker Dashboard</h1>
+                <img src={logoOne} alt="Logo" className="img-fluid mb-2 " />
+            </div>
             <button
                 className="btn btn-primary me-2"
                 onClick={() => setShowMoodForm(!showMoodForm)}
