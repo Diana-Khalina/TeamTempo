@@ -1,5 +1,5 @@
 #  TeamTempo  
-    ![TeamTempo Logo](./client/src/assets/logo2.png)
+    ![TeamTempo Logo](client/src/assets/logo2.png)
 
 **TeamTempo** is a remote employee well-being tracker built with the MERN stack. It allows employees to log daily ratings for their **mood**, **stress level**, **energy level**, and how **supported** they feel by management. Managers can view aggregated employee data to identify trends and take action to improve team morale and productivity.
 
@@ -34,8 +34,8 @@
 
 ## 📸 Screenshots
 
-![employee view] (./client/src/assets/TeamTempoEmployee.JPG)
-![employee daily mood form] (./client/src/assets/TeamTempoEntry.JPG)
+![employee view] (client/src/assets/TeamTempoEmployee.JPG)
+![employee daily mood form] (client/src/assets/TeamTempoEntry.JPG)
 ---
 
 ##  How to Run Locally
