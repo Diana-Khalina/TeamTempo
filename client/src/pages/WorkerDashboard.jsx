@@ -47,18 +47,20 @@ const WorkerDashboard = () => {
                 <h1 className="text-success">Welcome to Worker Dashboard</h1>
                 <img src={logoOne} alt="Logo" className="img-fluid mb-2 " />
             </div>
-            <button
-                className="btn btn-primary me-2"
-                onClick={() => setShowMoodForm(!showMoodForm)}
-            >
-                {showMoodForm ? 'Close Daily Mood Check' : 'Open Daily Mood Check'}
-            </button>
-            <button
-                className="btn btn-secondary"
-                onClick={handleShowEntries}
-            >
-                {showMoodEntries ? 'Close Mood Entries' : 'View Mood Entries'}
-            </button>
+            <div className="d-flex justify-content-center gap-3">
+                <button
+                    className="btn btn-lg btn-primary"
+                    onClick={() => setShowMoodForm(!showMoodForm)}
+                >
+                    {showMoodForm ? 'Close Daily Mood Check' : 'Open Daily Mood Check'}
+                </button>
+                <button
+                    className="btn btn-lg btn-secondary"
+                    onClick={handleShowEntries}
+                >
+                    {showMoodEntries ? 'Close Mood Entries' : 'View Mood Entries'}
+                </button>
+            </div>
 
             {showMoodForm && <DailyMoodForm onClose={() => setShowMoodForm(false)} />}
 
