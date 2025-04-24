@@ -1,6 +1,6 @@
 #  TeamTempo  
-    ![TeamTempo Logo](client/src/assets/logo2.png)
-
+    ![TeamTempo Logo](c:\Users\Todd\Documents\Bootcamp\TeamTempo.JPG)
+    
 **TeamTempo** is a remote employee well-being tracker built with the MERN stack. It allows employees to log daily ratings for their **mood**, **stress level**, **energy level**, and how **supported** they feel by management. Managers can view aggregated employee data to identify trends and take action to improve team morale and productivity.
 
 ---
@@ -42,7 +42,7 @@
 
 1. **Clone the repo:**
 
-   ```bash
+   ```ba
    git clone https://github.com/Diana-Khalina/TeamTempo.git
    cd teamtempo
 
